@@ -34,7 +34,7 @@ public class PigLocalGame extends LocalGame {
     @Override
     protected boolean canMove(int playerIdx) {
         //TODO  You will implement this method
-        if (state.playerID == playerIdx){
+        if (this.state.playerID == playerIdx){
             return true;
         }
         else{
@@ -59,28 +59,31 @@ public class PigLocalGame extends LocalGame {
                 state.setPlayerID(1);
             }
             else if (state.playerID == 1){
-                state.player1Score += state.runningTotal;
-                state.setRunningTotal(0);
+                this.state.player1Score += state.runningTotal;
+                this.state.setRunningTotal(0);
 
                 //change player 1 to player 0
-                state.setPlayerID(0);
+                this.state.setPlayerID(0);
             }
             return true;
         }
         else if (action instanceof PigRollAction){
-            state.setCurrDieVal((int)Math.random()*7);
+            this.state.setCurrDieVal((int)Math.random()*7);
 
             //there's a 1% chance that it'll be seven
-            if (state.currDieVal == 7) {
-                state.runningTotal += 6;
+            if (this.state.currDieVal == 7) {
+                this.state.runningTotal += 6;
             }
-            else if (state.currDieVal == 1){
-                state.setCurrDieVal(0);
-
+            else if (this.state.currDieVal == 1) {
+                this.state.setCurrDieVal(0);
             }
             else{
-                state.runningTotal += state.currDieVal;
+                this.state.runningTotal += this.state.currDieVal;
             }
+            //changes the player
+            if (this.state.playerID == 1) { this.state.setPlayerID(0); }
+            else { this.state.setPlayerID(1); }
+
             return true;
         }
         else {
@@ -90,11 +93,12 @@ public class PigLocalGame extends LocalGame {
 
     /**
      * send the updated state to a given player
+     * @param p
      */
     @Override
     protected void sendUpdatedStateTo(GamePlayer p) {
         //TODO  You will implement this method
-        PigGameState copy = new GameState(this.state);
+        PigGameState copy = new PigGameState(this.state);
         p.sendInfo(copy);
     }//sendUpdatedSate
 

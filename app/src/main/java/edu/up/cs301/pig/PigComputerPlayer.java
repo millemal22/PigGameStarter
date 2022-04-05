@@ -29,6 +29,36 @@ public class PigComputerPlayer extends GameComputerPlayer {
     @Override
     protected void receiveInfo(GameInfo info) {
         // TODO  You will implement this method
+
+        if (!(info instanceof PigGameState)){
+            return;
+        }
+        PigGameState state = new PigGameState();
+        state = (PigGameState)info;
+
+        //if(not player's turn){
+        //return;
+        //}
+        /*else
+            float rand = Math.random()*2;
+            if(rand >= 1){
+                PigRollAction roll = new PigRollAction();
+                sendUpdatedInfo(player);
+            }
+            else{
+                PigHoldAction = new PigHoldAction();
+                sendUpdatedInfo(player);
+            }
+
+            //Updates the TextViews to display the scores
+
+            //Updates the dieImageButton to show the right number
+            //dieImage.setImageResource
+
+            //calls the onClick method whenever the user taps
+            //hold or taps the die button to roll the dice
+         */
+
     }//receiveInfo
 
 }

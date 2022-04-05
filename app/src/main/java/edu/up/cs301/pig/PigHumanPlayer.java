@@ -61,6 +61,28 @@ public class PigHumanPlayer extends GameHumanPlayer implements OnClickListener {
     @Override
     public void receiveInfo(GameInfo info) {
         //TODO You will implement this method to receive state objects from the game
+
+        if (!(info instanceof PigGameState)){
+            return;
+        }
+        PigGameState state = new PigGameState();
+        state = (PigGameState)info;
+
+        //if(not player's turn){
+            //return;
+        //}
+        /*else
+            float rand = Math.random()*2;
+            if(rand >= 1){
+                PigRollAction roll = new PigRollAction();
+                sendUpdatedInfo(player);
+            }
+            else{
+                PigHoldAction = new PigHoldAction();
+                sendUpdatedInfo(player);
+            }
+         */
+
     }//receiveInfo
 
     /**
